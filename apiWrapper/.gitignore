@@ -1,0 +1,38 @@
+# Ignore compiled output and build directories
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS (Spring Tool Suite) ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/          # Ignore VS Code project files
+resources/        # Ignore resources directory
+application.properties # Ignore application properties file if required
+
+### Misc ###
+HELP.md  # Ignore the HELP.md file (remove this if you want to keep it in version control)
