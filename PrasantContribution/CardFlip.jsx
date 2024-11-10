@@ -93,7 +93,7 @@ const CardFlip = () => {
               {/* Shuffle Link */}
               <button
                 onClick={shuffleFlashcards}
-                className="text-gray-400 text-sm underline mt-1 cursor-pointer focus:outline-none"
+                className="text-gray-400 text-sm mt-1 cursor-pointer focus:outline-none"
                 aria-label="Shuffle flashcards"
               >
                 Shuffle
