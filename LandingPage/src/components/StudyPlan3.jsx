@@ -2,12 +2,11 @@ import { useRef, useState } from 'react';
 import axios from 'axios';
 import HeroSectionBarsat from './HeroSectionBarsat';
 
-
 export const StudyPlan3 = () => {
-    
   const fileInputRef = useRef(null);
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
+  const [days, setDays] = useState(10);
   const [response, setResponse] = useState('');
 
   const handleFileClick = () => {
@@ -33,6 +32,7 @@ export const StudyPlan3 = () => {
 
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('days', days);
 
     try {
       const openApiKey = import.meta.env.VITE_OPENAI_API_KEY;
@@ -58,7 +58,7 @@ export const StudyPlan3 = () => {
   return (
     <div className="flex flex-col items-center my-10">
       <HeroSectionBarsat/>
-        
+
       <input
         type="file"
         ref={fileInputRef}
@@ -67,32 +67,39 @@ export const StudyPlan3 = () => {
         onChange={handleFileChange}
       />
 
-
-      <div className="flex items-center space-x-4"> 
+      <div className="flex items-center space-x-4">
         <button
           onClick={handleFileClick}
-          className="text-[0.7rem] sm:text-[0.75] md:text-sm bg-gradient-to-r from-yellow-600 via-amber-700 to-amber-800 text-white py-2 px-4 rounded-md cursor-pointer text-center"
+          className="text-sm sm:text-base bg-gradient-to-r from-orange-500 to-orange-800 hover:from-orange-600 hover:to-orange-900 text-white py-2 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-200 ease-in-out"
         >
           Choose PDF File
         </button>
+      </div>
 
-        
+      {fileName && (
+        <p className="text-sm mt-4 text-gray-400 text-center mx-2">
+          Selected file: <span className="italic">{fileName}</span>
+        </p>
+      )}
+
+      <div className="mt-8 flex flex-col items-center">
+        <p className="text-lg mb-2 text-white-600">Study Plan for(days)</p>
+        <input
+          type="number"
+          min="1"
+          value={days}
+          onChange={(e) => setDays(e.target.value)}
+          className="border rounded-lg p-2 text-center w-20 mb-4"
+          placeholder="Days"
+        />
         <button
           onClick={handleGenerateFlashcards}
-          className="bg-gradient-to-r from-orange-500 to-orange-800 text-white py-2 px-4 rounded-md cursor-pointer text-center"
+          className="text-sm sm:text-base bg-gradient-to-r from-orange-500 to-orange-800 hover:from-orange-600 hover:to-orange-900 text-white py-2 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-200 ease-in-out"
         >
           Generate Flashcards
         </button>
       </div>
 
-      
-      {fileName && (
-        <p className="text-[0.7rem] sm:text-[0.75rem] md:text-sm lg:text-base mt-4 text-gray-400 text-center mx-2">
-          Selected file: <span className="italic">{fileName}</span>
-        </p>
-      )}
-
-      
       {response && (
         <div className="mt-8 bg-neutral-800 p-6 rounded-lg text-white">
           <h3 className="text-2xl mb-4">Generated Flashcards:</h3>
