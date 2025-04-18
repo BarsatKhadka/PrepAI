@@ -21,7 +21,7 @@ const OpenAIFileUploader = ({ pdfText }) => {
       setHasStarted(true);
 
       const response = await openai.chat.completions.create({
-        model: "gpt-4o",
+        model: "gpt-3.5-turbo",
         messages: [
           { "role": "user", "content": `I want to prepare for quizzes so that I can remember the contents for examination. Prepare a quiz using the text I have extracted from my source pdf: \n ${text}. Generate the quiz in json format which is an array of objects that have "question", "options" and the right answer index as keys. Don't generate other text except JSON. also remove 3 backticks and json while sending the response` }
         ],
